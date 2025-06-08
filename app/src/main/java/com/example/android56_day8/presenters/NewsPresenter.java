@@ -26,13 +26,13 @@ public class NewsPresenter implements NewsPresenterImpl {
     @Override
     public void getNews() {
         mNewsView.showLoading();
-        mNewsApi.getTopHeadlines("us", 10, ConstantApi.API_KEY).enqueue(new Callback<NewsResponse>() {
+        mNewsApi.getTopHeadlines("us", 10, ConstantApi.API_KEY).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<NewsResponse> call, Response<NewsResponse> response) {
                 mNewsView.hideLoading();
                 if (response.isSuccessful() && response.body() != null) {
                     mNewsView.showArticles(response.body().getArticles());
-                    Log.d("NEWS_COUNT", "Số bài nhận được từ API: " + response.body().getArticles().size());
+                    Log.d("NEWS_COUNT", "Số bài nhận được : " + response.body().getArticles().size());
 
                 } else {
                     mNewsView.showError("Không có bài viết.");
